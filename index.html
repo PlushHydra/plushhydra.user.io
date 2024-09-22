@@ -47,7 +47,7 @@
       }
 
       var dropChance = baseChance * (1 + (lootingLevel * 0.15)) * (1 + (magicFind / 100));
-      var percentage = (dropChance * 100).toFixed(3);
+      var percentage = (dropChance * 100).toFixed(10);
       document.getElementById("result").innerHTML = "Drop Chance: " + percentage + "%";
     }
   </script>
