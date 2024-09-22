@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Drop Chance Calculator</title>
+  <style>
+    /* Add CSS styles to decorate the webpage */
+    body {
+      background-image: url('images/side-view-anime-girl-hugging-cat.jpg'); /* Replace with your local image file path */
+      background-size: cover; /* Scale the image to cover the entire background */
+      background-position: center; /* Center the image */
+      text-align: center; /* Center align the content */
+      color: #fff; /* Set text color to white */
+    }
+    form {
+      display: inline-block; /* Make the form inline-block to center it */
+      background-color: rgba(0, 0, 0, 0.5); /* Add a semi-transparent black background to the form */
+      padding: 20px; /* Add some padding to the form */
+      border-radius: 10px; /* Add a border radius to the form */
+    }
+    label, input, button {
+      font-size: 18px; /* Increase font size for better readability */
+    }
+  </style>
+</head>
+<body>
+  <h1>Drop Chance Calculator</h1>
+  <form onsubmit="return false;">
+    <label for="base_chance">Base Chance:</label>
+    <input type="number" id="base_chance" name="base_chance" step="0.001"><br><br>
+    <label for="looting_level">Looting Level:</label>
+    <input type="number" id="looting_level" name="looting_level"><br><br>
+    <label for="magic_find">Magic Find:</label>
+    <input type="number" id="magic_find" name="magic_find"><br><br>
+    <button onclick="calculateDropChance()">Calculate Drop Chance</button>
+    <p id="result"></p>
+  </form>
+
+  <script>
+    function calculateDropChance() {
+      var baseChance = document.getElementById("base_chance").value;
+      var lootingLevel = document.getElementById("looting_level").value;
+      var magicFind = document.getElementById("magic_find").value;
+
+      // Check if the base chance is a decimal value (e.g. 0.5)
+      if (baseChance < 1) {
+        baseChance = baseChance * 0.01; // Convert to percentage (e.g. 0.5 becomes 0.5%)
+      }
+
+      var dropChance = baseChance * (1 + (lootingLevel * 0.15)) * (1 + (magicFind / 100));
+      var percentage = (dropChance * 100).toFixed(3);
+      document.getElementById("result").innerHTML = "Drop Chance: " + percentage + "%";
+    }
+  </script>
+</body>
+</html>
